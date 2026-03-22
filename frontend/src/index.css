@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #f0efe9;
+    @apply text-slate-900 font-sans antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium
+           bg-white text-slate-900 rounded-lg border border-slate-200
+           hover:bg-slate-50 hover:border-slate-300
+           transition-colors duration-150
+           focus:outline-none focus:ring-2 focus:ring-slate-200 focus:ring-offset-1
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium
+           bg-white text-slate-600 rounded-lg border border-slate-200
+           hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300
+           transition-colors duration-150
+           focus:outline-none focus:ring-2 focus:ring-slate-200 focus:ring-offset-1;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold
+           bg-indigo-400 text-white rounded-lg border border-indigo-400
+           hover:bg-indigo-500 hover:border-indigo-500
+           transition-colors duration-150
+           focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-offset-1
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .card {
+    @apply rounded-xl border border-[#dddcd6] p-5;
+    background-color: #f8f7f3;
+  }
+
+  .input {
+    @apply w-full px-3 py-2 text-sm rounded-lg border border-slate-200 bg-white
+           text-slate-900 placeholder-slate-400
+           focus:outline-none focus:ring-2 focus:ring-indigo-300/50 focus:border-indigo-400
+           transition-colors duration-150;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+
+.page-enter {
+  animation: fadeSlideIn 0.15s ease-out;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* contentEditable placeholder */
+.chat-editor:empty::before {
+  content: attr(data-placeholder);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+/* Document chip — inline so background hugs each line when text wraps */
+.doc-chip {
+  display: inline;
+  padding: 2px 6px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.doc-chip svg {
+  display: inline;
+  vertical-align: -1px;
+}

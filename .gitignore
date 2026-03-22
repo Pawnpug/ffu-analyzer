@@ -6,3 +6,6 @@ backend/__pycache__/
 .DS_Store
 backend/data/
 backend/ffu.db-journal
+backend/venv/
+frontend/dist/
+frontend/node_modules/
