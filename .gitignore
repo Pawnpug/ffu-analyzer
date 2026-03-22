@@ -9,3 +9,4 @@ backend/ffu.db-journal
 backend/venv/
 frontend/dist/
 frontend/node_modules/
+frontend/.vite/
