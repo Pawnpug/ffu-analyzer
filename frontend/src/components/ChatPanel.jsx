@@ -19,11 +19,11 @@ const writeChat = (msgs) => {
   try { localStorage.setItem(CHAT_KEY, JSON.stringify(stable)) } catch {}
 }
 
-const CITE_RE = /(【[^】]+】)/
+const CITE_RE = /(【[^】\]]+[】\]])/
 
 function parseCite(token) {
-  // With page: 【filename, s.N, "quote"】 or 【filename, s.N】
-  const m = token.match(/^【([^,】]+),\s*s\.(\d+)([\s\S]*?)】$/)
+  // With page: 【filename, s.N, "quote"】 or 【filename, s.N】 (also accepts ] as closing)
+  const m = token.match(/^【([^,】\]]+),\s*s\.(\d+)([\s\S]*?)[】\]]$/)
   if (m) {
     const page = parseInt(m[2], 10)
     if (isNaN(page)) return null
@@ -39,7 +39,7 @@ function parseCite(token) {
     return { filename: m[1].trim(), page, quote }
   }
   // Without page: 【filename】
-  const m2 = token.match(/^【([^】]+)】$/)
+  const m2 = token.match(/^【([^】\]]+)[】\]]$/)
   if (m2) return { filename: m2[1].trim(), page: null, quote: null }
   return null
 }
